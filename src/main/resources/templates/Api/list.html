@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Lista Apis</title>
+</head>
+<body>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom">Lista de APIs</h1>
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Nombre de la API</th>
+                <th>Version</th>
+                <th>Fecha de registro</th>
+                <th>Estado</th>
+                <th>Equipo responsable</th>
+                <th>Acciones</th>
+                <th></th>
+            </tr>
+            <tr th:each="api, info : ${apiList}">
+                <td th:text="${info.index + 1}"></td>
+                <td th:text="${api.nombre}"></td>
+                <td th:text="${api.version}"></td>
+                <td th:text="${api.fechaRegistro}"></td>
+                <td th:text="${api.estado}"></td>
+                <td th:text="${api.equipo.nombre}"></td>
+                <td><a class="btn btn-danger" th:href="@{'/endpoints?id=' + ${api.id}}">Ver endpoints</a>
+                </td>
+                <td><a class="btn btn-primary" th:href="@{'/edit?id=' + ${api.id}}">Editar</a>
+                </td>
+
+            </tr>
+        </table>
+    </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

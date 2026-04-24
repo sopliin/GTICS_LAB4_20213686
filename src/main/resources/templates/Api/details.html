@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <title>Detalle Api</title>
+</head>
+<body>
+<main>
+    <div class="container px-4 py-5">
+        <h1 class="pb-2 border-bottom">Detalle de API: Endpoints</h1>
+        <h2 class="pb-2 border-bottom" th:text="${api.nombre}"></h2>
+        <h2 class="pb-2 border-bottom" th:text="${api.version}"></h2>
+        <h2 class="pb-2 border-bottom" th:text="${api.estado}"></h2>
+        <h2 class="pb-2 border-bottom" th:text="${api.equipo.nombre}"></h2>
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Ruta</th>
+                <th>Método HTTP</th>
+                <th>descripcion</th>
+            </tr>
+            <tr th:each="endpoint, info : ${listaEndpoints}">
+                <td th:text="${info.index + 1}"></td>
+                <td th:text="${endpoint.ruta}"></td>
+                <td th:text="${endpoint.metodoHttp}"></td>
+                <td th:text="${endpoint.descripcion}"></td>
+            </tr>
+        </table>
+    </div>
+</main>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
